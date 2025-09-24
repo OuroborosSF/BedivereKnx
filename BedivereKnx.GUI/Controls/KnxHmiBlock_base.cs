@@ -26,6 +26,19 @@ namespace BedivereKnx.GUI.Controls
             {
                 lblName.Text = obj?.Name;
             }
+            //调整字体大小确保完全显示：
+            float fontSize = lblName.Font.Size;
+            while (TextRenderer.MeasureText(lblName.Text, new Font(lblName.Font.FontFamily, fontSize)).Width > lblName.Width)
+            {
+                fontSize -= 0.5f;
+                lblName.Font = new Font(lblName.Font.FontFamily, fontSize);
+            }
+            //Size textSize = TextRenderer.MeasureText(lblName.Text, lblName.Font);
+            //if (textSize.Width > lblName.Width)
+            //{
+            //    float newSize = lblName.Font.Size * (float)lblName.Width / textSize.Width;
+            //    lblName.Font = new Font(lblName.Font.FontFamily, newSize);
+            //}
         }
 
     }

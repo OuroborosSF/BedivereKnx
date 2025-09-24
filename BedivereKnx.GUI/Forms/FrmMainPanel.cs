@@ -9,7 +9,7 @@ namespace BedivereKnx.GUI.Forms
         private readonly KnxSystem knx = Globals.KnxSys!;
         private Dictionary<string, List<KnxObject>> currentDic = [];
         //private readonly List<KnxHmiLightBlock> listSwitch = [];
-        private List<KnxHmiBlockBase> currentControls = [];
+        private List<KnxHmiBlockBase> currentControls = []; //当前显示的控件数组
 
         public FrmMainPanel()
         {
@@ -31,6 +31,7 @@ namespace BedivereKnx.GUI.Forms
             root.Nodes.AddRange(knx.Areas.MainAreas.ToTreeNodes()); //添加主区域
             foreach (TreeNode mainNode in root.Nodes) //遍历主区域节点
             {
+                mainNode.Expand(); //展开主节点
                 mainNode.Nodes.AddRange(knx.Areas[mainNode.Name].ChildrenAreas.ToTreeNodes()); //向主区域下添加中区域
                 foreach (TreeNode midNode in mainNode.Nodes)
                 {
@@ -52,10 +53,12 @@ namespace BedivereKnx.GUI.Forms
             {
                 currentDic = knx.Objects.GetGroupDic<KnxObject>(e.Node.Name);
                 lstGroup.DataSource = currentDic.Keys.ToList(); //填充分组ListBox
-                List<KnxObject> list = knx.Objects
-                    .Where(obj => obj.AreaCode == e.Node.Name)
-                    .ToList();
-                currentControls = ObjToControl(list); //控件列表
+                IEnumerable<KnxScene> listScn = knx.Scenes
+                    .Where(scn => scn.AreaCode == e.Node.Name); //筛选出属于选择区域的KNX场景
+                currentControls = ObjToControl(listScn); //控件列表此时只有场景
+                IEnumerable<KnxObject> listObj = knx.Objects
+                    .Where(obj => obj.AreaCode == e.Node.Name); //筛选出属于选择区域的KNX对象
+                currentControls.AddRange(ObjToControl(listObj)); //控件列表中加入KNX对象部分
                 PanelInit<KnxHmiBlockBase>(tlpSwitch, currentControls);
             }
             this.ResumeLayout();
@@ -95,7 +98,6 @@ namespace BedivereKnx.GUI.Forms
             ////MessageBox.Show(listSwitch.Count.ToString());
             ////pnlSwitch_Resize(pnlSwitch, EventArgs.Empty);
             //PanelInit(tlpSwitch, listSwitch);
-
         }
 
         /// <summary>
@@ -103,15 +105,15 @@ namespace BedivereKnx.GUI.Forms
         /// </summary>
         /// <param name="objList"></param>
         /// <returns></returns>
-        private static List<KnxHmiBlockBase> ObjToControl(List<KnxObject> objList)
+        private static List<KnxHmiBlockBase> ObjToControl(IEnumerable<KnxObject> objList)
         {
             if (objList is null) return [];
-            List<KnxHmiBlockBase> ctlList = [];
+            List<KnxHmiBlockBase> ctlList = []; //输出用的列表
             foreach (KnxObject obj in objList)
             {
                 switch (obj.Type)
                 {
-                    case KnxObjectType.Light:
+                    case KnxObjectType.Light: //灯光
                         //【区分调光】
                         KnxHmiLightBlock lgt = new((KnxLight)obj)
                         {
@@ -119,22 +121,44 @@ namespace BedivereKnx.GUI.Forms
                         };
                         ctlList.Add(lgt);
                         break;
-                    case KnxObjectType.Curtain:
-
+                    case KnxObjectType.Curtain: //窗帘
+                        throw new NotImplementedException();
                         break;
-                    case KnxObjectType.Value:
-
+                    case KnxObjectType.Value: //数值
+                        throw new NotImplementedException();
                         break;
-                    case KnxObjectType.Enablement:
-                        //KnxHmiEnableBlock en = new((KnxEnablement)obj)
-                        //{
-                        //    Dock = DockStyle.Fill,
-                        //};
-                        //ctlList.Add(en);
+                    case KnxObjectType.Enablement: //使能
+                        KnxHmiEnableBlock en = new((KnxEnablement)obj)
+                        {
+                            Dock = DockStyle.Fill,
+                        };
+                        ctlList.Add(en);
+                        break;
+                    case KnxObjectType.Scene: //场景
+                        KnxHmiSceneBlock scn = new((KnxScene)obj)
+                        {
+                            Dock = DockStyle.Fill,
+                        };
+                        ctlList.Add(scn);
                         break;
                     default:
                         continue;
                 }
+            }
+            return ctlList;
+        }
+
+        private static List<KnxHmiBlockBase> ObjToControl(IEnumerable<KnxScene> scnList)
+        {
+            if (scnList is null) return [];
+            List<KnxHmiBlockBase> ctlList = []; //输出用的列表
+            foreach (KnxScene scn in scnList)
+            {
+                KnxHmiSceneBlock ctl = new(scn)
+                {
+                    Dock = DockStyle.Fill,
+                };
+                ctlList.Add(ctl);
             }
             return ctlList;
         }
@@ -166,7 +190,7 @@ namespace BedivereKnx.GUI.Forms
             {
                 tlp.RowStyles.Add(new RowStyle(SizeType.Absolute, T.DefaultHeight)); //设定行的样式
             }
-            tlp.RowCount += 1;
+            tlp.RowCount += 1; //额外添加一行，防止最后一行被拉高
             //tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             //Debug.Print($"RowCount:{tlp.RowCount}, ColumnCount: {tlp.ColumnCount}");
             for (int i = 0; i < list.Count; i++)
@@ -180,20 +204,11 @@ namespace BedivereKnx.GUI.Forms
             tlp.AutoScroll = true; //启用自动滚动
         }
 
-        private void FrmMainPanel_ResizeEnd(object sender, EventArgs e)
-        {
-        }
-
-        private void FrmMainPanel_SizeChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tlpSwitch_SizeChanged(object sender, EventArgs e)
         {
             PanelInit(tlpSwitch, currentControls);
-
         }
+
     }
 
 }

@@ -26,6 +26,12 @@ namespace BedivereKnx.Models
         public string[] Names { get; set; } = new string[64];
 
         /// <summary>
+        /// 场景数量
+        /// </summary>
+        [Browsable(false)]
+        public int SceneCount { get; private set; }
+
+        /// <summary>
         /// 新建KNX场景对象
         /// </summary>
         /// <param name="id">对象ID</param>
@@ -33,10 +39,32 @@ namespace BedivereKnx.Models
         /// <param name="name">对象名称</param>
         /// <param name="ifCode">接口编号</param>
         /// <param name="areaCode">区域编号</param>
-        public KnxScene(int id, string code, string? name, string? ifCode, string? areaCode)
+        public KnxScene(int id, string code, string? name, string? ifCode, string? areaCode, string sceneValues)
             : base(KnxObjectType.Scene, id, code, name, ifCode, areaCode)
         {
             Names = new string[64]; //重置场景名数组
+            string[] valuePairs = Convertor.ToArray(sceneValues, ','); //场景值数组
+            SceneCount = valuePairs.Length;
+            foreach (string pairText in valuePairs) //遍历每个场景值
+            {
+                if (string.IsNullOrWhiteSpace(pairText)) continue; //跳过空项
+                string[] pair = Convertor.ToArray(pairText, '='); //{场景地址, 场景名}
+                if (byte.TryParse(pair[0], out byte num)) //场景编号是数字
+                {
+                    if (num < 64) //0~63的情况
+                    {
+                        Names[num] = pair[1].Trim(); //设置对应场景号的名称
+                    }
+                    else //场景号超过大于的情况
+                    {
+                        throw new ArgumentOutOfRangeException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, num));
+                    }
+                }
+                else //场景号不是数字
+                {
+                    throw new FormatException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, pair[0]));
+                }
+            }
         }
 
         ///// <summary>

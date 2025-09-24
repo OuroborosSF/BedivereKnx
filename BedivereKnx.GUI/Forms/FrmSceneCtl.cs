@@ -6,7 +6,7 @@ namespace BedivereKnx.GUI.Forms
     public partial class FrmSceneCtl : Form
     {
 
-        internal byte SelectedAddress; //传递的场景地址（0~63）
+        internal byte SelectedNum; //传递的场景地址（0~63）
         internal bool IsLearn = false; //是否学习
 
         public FrmSceneCtl(KnxScene scene)
@@ -44,7 +44,7 @@ namespace BedivereKnx.GUI.Forms
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (lvScn.SelectedItems.Count == 0) return;
-            SelectedAddress = Convert.ToByte(lvScn.SelectedItems[0].Tag);
+            SelectedNum = Convert.ToByte(lvScn.SelectedItems[0].Tag);
             DialogResult = DialogResult.OK;
             Close();
         }

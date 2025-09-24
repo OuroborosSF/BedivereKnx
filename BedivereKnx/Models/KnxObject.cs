@@ -56,6 +56,43 @@ namespace BedivereKnx.Models
         /// </summary>
         public string? AreaCode { get; set; }
 
+        //public KnxGroupBundle(KnxObjectType type, int id, string? ifCode)
+        //{
+        //    Type = type;
+        //    Id = id;
+        //    InterfaceCode = ifCode;
+        //}
+
+        public KnxObject(KnxObjectType type, int id, string code, string? name, string? ifCode, string? areaCode)
+        {
+            if (code is null)
+            {
+                throw new NoNullAllowedException(string.Format(ResString.ExMsg_NoNullAllowed, "ObjectCode", $"ID={id}"));
+            }
+            else
+            {
+                Type = type;
+                Id = id;
+                Code = code;
+                Name = name;
+                InterfaceCode = ifCode;
+                AreaCode = areaCode;
+            }
+        }
+
+        internal static KnxObject NewObject(KnxObjectType type, int id, string code, string? name, string? ifCode, string? areaCode)
+        {
+            return type switch
+            {
+                KnxObjectType.Light => new KnxLight(id, code, name, ifCode, areaCode),
+                KnxObjectType.Curtain => throw new NotImplementedException(),
+                KnxObjectType.Value => new KnxValue(id, code, name, ifCode, areaCode),
+                KnxObjectType.Enablement => new KnxEnablement(id, code, name, ifCode, areaCode),
+                KnxObjectType.Scene => throw new NotImplementedException(),
+                _ => throw new NotImplementedException(),
+            };
+        }
+
         /// <summary>
         /// 索引器（按KnxObjectPart对象）
         /// </summary>
@@ -100,41 +137,6 @@ namespace BedivereKnx.Models
                 KnxObjectPart part = KnxGroupFactory.GetKnxObjectPart(partString);
                 this[part] = value;
             }
-        }
-
-        //public KnxGroupBundle(KnxObjectType type, int id, string? ifCode)
-        //{
-        //    Type = type;
-        //    Id = id;
-        //    InterfaceCode = ifCode;
-        //}
-
-        public KnxObject(KnxObjectType type, int id, string code, string? name, string? ifCode, string? areaCode)
-        {
-            if (code is null)
-            {
-                throw new NoNullAllowedException(string.Format(ResString.ExMsg_NoNullAllowed, "ObjectCode", $"ID={id}"));
-            }
-            else
-            {
-                Type = type;
-                Id = id;
-                Code = code;
-                Name = name;
-                InterfaceCode = ifCode;
-                AreaCode = areaCode;
-            }
-        }
-
-        public static KnxObject NewObject(KnxObjectType type, int id, string code, string? name, string? ifCode, string? areaCode)
-        {
-            return type switch
-            {
-                KnxObjectType.Light => new KnxLight(id, code, name, ifCode, areaCode),
-                KnxObjectType.Scene => new KnxScene(id, code, name, ifCode, areaCode),
-                KnxObjectType.Enablement => new KnxEnablement(id, code, name, ifCode, areaCode),
-                _ => throw new NotImplementedException(),
-            };
         }
 
         /// <summary>
@@ -193,7 +195,7 @@ namespace BedivereKnx.Models
                 GroupValue? val = group.ToGroupValue(value);
                 if (val != null)
                 {
-                    groups[part].Value= val;
+                    groups[part].Value = val;
                     KnxGroupEventArgs gwa = new(InterfaceCode, groups[part].Address, priority);
                     WriteRequest?.Invoke(gwa, val);
                 }

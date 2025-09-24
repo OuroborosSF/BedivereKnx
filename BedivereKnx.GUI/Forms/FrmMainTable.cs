@@ -414,7 +414,7 @@ namespace BedivereKnx.GUI.Forms
             FrmSceneCtl frmSceneCtl = new(scene);
             if (frmSceneCtl.ShowDialog() == DialogResult.OK)
             {
-                scene.SceneControl(frmSceneCtl.SelectedAddress);
+                scene.SceneControl(frmSceneCtl.SelectedNum);
             }
         }
 

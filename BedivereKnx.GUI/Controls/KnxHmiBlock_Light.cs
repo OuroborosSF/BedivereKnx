@@ -15,14 +15,6 @@ namespace BedivereKnx.GUI.Controls
             knxLight = light;
             knxLight[KnxObjectPart.SwitchFeedback].GroupValueChanged += OnGroupValueChanged;
             InitializeComponent();
-            //if (string.IsNullOrWhiteSpace(knxLight?.Name))
-            //{
-            //    lblName.Text = knxLight?.Code;
-            //}
-            //else
-            //{
-            //    lblName.Text = knxLight?.Name;
-            //}
             OnGroupValueChanged(knxLight[KnxObjectPart.SwitchFeedback].Value);
         }
 

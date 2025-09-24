@@ -33,6 +33,7 @@
             // 
             // lblName
             // 
+            lblName.AutoEllipsis = true;
             lblName.BorderStyle = BorderStyle.FixedSingle;
             lblName.Dock = DockStyle.Bottom;
             lblName.Location = new Point(0, 160);

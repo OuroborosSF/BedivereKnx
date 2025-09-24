@@ -31,6 +31,11 @@
             chkEn = new CheckBox();
             SuspendLayout();
             // 
+            // lblName
+            // 
+            lblName.Location = new Point(0, 156);
+            lblName.Size = new Size(196, 40);
+            // 
             // chkEn
             // 
             chkEn.Appearance = Appearance.Button;
@@ -39,7 +44,7 @@
             chkEn.Dock = DockStyle.Fill;
             chkEn.Location = new Point(0, 0);
             chkEn.Name = "chkEn";
-            chkEn.Size = new Size(200, 160);
+            chkEn.Size = new Size(196, 156);
             chkEn.TabIndex = 3;
             chkEn.UseVisualStyleBackColor = true;
             chkEn.CheckedChanged += chkEn_CheckedChanged;
@@ -48,8 +53,11 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Window;
+            BorderStyle = BorderStyle.Fixed3D;
             Controls.Add(chkEn);
             Name = "KnxHmiEnableBlock";
+            Size = new Size(196, 196);
             Controls.SetChildIndex(lblName, 0);
             Controls.SetChildIndex(chkEn, 0);
             ResumeLayout(false);

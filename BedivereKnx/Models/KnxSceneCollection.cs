@@ -63,29 +63,32 @@ namespace BedivereKnx.Models
                 string? ifCode = dr.Field<string>("InterfaceCode"); //接口编号
                 string? areaCode = dr.Field<string>("AreaCode"); //区域编号
                 GroupAddress ga = dr.Field<GroupAddress>("GroupAddress"); //场景组地址
-                KnxScene scn = new(id, scnCode, scnName, ifCode, areaCode);
+                string? sceneValues = dr.Field<string>("SceneValues");
+                if (string.IsNullOrWhiteSpace(sceneValues))
+                    throw new NoNullAllowedException(string.Format(ResString.ExMsg_NoNullAllowed, "SceneValues", $"ID={id}"));
+                KnxScene scn = new(id, scnCode, scnName, ifCode, areaCode, sceneValues);
                 scn[KnxObjectPart.SceneControl] = new(dr.Field<GroupAddress>("GroupAddress"), 18, 1); //场景组地址
-                string[] valuePairs = Convertor.ToArray(dr.Field<string>("SceneValues"), ','); //场景值数组
-                foreach (string pairText in valuePairs) //遍历每个场景值
-                {
-                    if (string.IsNullOrWhiteSpace(pairText)) continue; //跳过空项
-                    string[] pair = Convertor.ToArray(pairText, '='); //{场景地址, 场景名}
-                    if (byte.TryParse(pair[0], out byte num)) //场景编号是数字
-                    {
-                        if (num < 64) //0~63的情况
-                        {
-                            scn.Names[num] = pair[1].Trim(); //设置对应场景号的名称
-                        }
-                        else //场景号超过大于的情况
-                        {
-                            throw new ArgumentOutOfRangeException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, num));
-                        }
-                    }
-                    else //场景号不是数字
-                    {
-                        throw new FormatException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, pair[0]));
-                    }
-                }
+                //string[] valuePairs = Convertor.ToArray(dr.Field<string>("SceneValues"), ','); //场景值数组
+                //foreach (string pairText in valuePairs) //遍历每个场景值
+                //{
+                //    if (string.IsNullOrWhiteSpace(pairText)) continue; //跳过空项
+                //    string[] pair = Convertor.ToArray(pairText, '='); //{场景地址, 场景名}
+                //    if (byte.TryParse(pair[0], out byte num)) //场景编号是数字
+                //    {
+                //        if (num < 64) //0~63的情况
+                //        {
+                //            scn.Names[num] = pair[1].Trim(); //设置对应场景号的名称
+                //        }
+                //        else //场景号超过大于的情况
+                //        {
+                //            throw new ArgumentOutOfRangeException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, num));
+                //        }
+                //    }
+                //    else //场景号不是数字
+                //    {
+                //        throw new FormatException(string.Format(ResString.ExMsg_KnxSceneNumberInvalid, pair[0]));
+                //    }
+                //}
                 scn.WriteRequest += OnSceneControlRequest;
                 items.Add(id, scn); //字典内添加KnxScene对象
                 //数据表：

@@ -70,8 +70,6 @@
             Controls.Add(tvArea);
             DoubleBuffered = true;
             Name = "FrmMainPanel";
-            ResizeEnd += FrmMainPanel_ResizeEnd;
-            SizeChanged += FrmMainPanel_SizeChanged;
             tlpMain.ResumeLayout(false);
             ResumeLayout(false);
         }

@@ -16,7 +16,7 @@
 
     public enum KnxEnablementType
     {
-        General=0,
+        General = 0,
         Enable,
         Lock
     }
