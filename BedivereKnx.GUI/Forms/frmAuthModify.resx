@@ -278,7 +278,7 @@
     <value>Fill</value>
   </data>
   <data name="chkModUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>237, 3</value>
   </data>
   <data name="chkModUpdate.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>10, 0, 0, 0</value>
@@ -308,7 +308,7 @@
     <value>Fill</value>
   </data>
   <data name="chkModeNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>237, 3</value>
+    <value>3, 3</value>
   </data>
   <data name="chkModeNew.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>10, 0, 0, 0</value>
@@ -362,7 +362,7 @@
     <value>1</value>
   </data>
   <data name="tlpGrp.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="chkModUpdate" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="chkModeNew" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,30,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="chkModUpdate" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="chkModeNew" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Absolute,30,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="grpMode.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

@@ -25,6 +25,10 @@ namespace BedivereKnx.GUI.Forms
                     {
                         MessageBox.Show(Resources.Strings.Msg_AuthSuccess, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        MessageBox.Show(Resources.Strings.Msg_AuthFail, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -39,6 +43,10 @@ namespace BedivereKnx.GUI.Forms
                     {
                         MessageBox.Show(Resources.Strings.Msg_AuthSuccess, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        MessageBox.Show(Resources.Strings.Msg_AuthFail, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -47,6 +55,7 @@ namespace BedivereKnx.GUI.Forms
             }
             else //非法绕过模式选择的情况
             {
+                MessageBox.Show("Illegal Operation!", "Illegal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Environment.Exit(-4);
             }
             DialogResult = DialogResult.OK;
@@ -63,7 +72,7 @@ namespace BedivereKnx.GUI.Forms
         {
             Environment.Exit(-4);
         }
-    
+
     }
 
 }

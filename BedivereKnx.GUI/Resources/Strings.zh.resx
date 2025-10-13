@@ -235,4 +235,7 @@
   <data name="Hdr_ValueFeedback" xml:space="preserve">
     <value>数值反馈</value>
   </data>
+  <data name="Msg_AuthFail" xml:space="preserve">
+    <value>注册失败，程序即将退出。</value>
+  </data>
 </root>

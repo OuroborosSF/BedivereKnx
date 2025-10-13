@@ -277,6 +277,15 @@ namespace BedivereKnx.GUI.Resources {
         }
         
         /// <summary>
+        ///   查找类似 Authorization failed, the program will exit. 的本地化字符串。
+        /// </summary>
+        internal static string Msg_AuthFail {
+            get {
+                return ResourceManager.GetString("Msg_AuthFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Authorization successful, please restart the program. 的本地化字符串。
         /// </summary>
         internal static string Msg_AuthSuccess {

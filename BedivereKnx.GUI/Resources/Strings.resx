@@ -235,4 +235,7 @@
   <data name="Hdr_ValueFeedback" xml:space="preserve">
     <value>Value Feedback</value>
   </data>
+  <data name="Msg_AuthFail" xml:space="preserve">
+    <value>Authorization failed, the program will exit.</value>
+  </data>
 </root>

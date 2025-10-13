@@ -97,22 +97,22 @@
             // tlpGrp
             // 
             resources.ApplyResources(tlpGrp, "tlpGrp");
-            tlpGrp.Controls.Add(chkModUpdate, 0, 0);
-            tlpGrp.Controls.Add(chkModeNew, 1, 0);
+            tlpGrp.Controls.Add(chkModUpdate, 1, 0);
+            tlpGrp.Controls.Add(chkModeNew, 0, 0);
             tlpGrp.Name = "tlpGrp";
             // 
             // chkModUpdate
             // 
-            chkModUpdate.Checked = true;
             resources.ApplyResources(chkModUpdate, "chkModUpdate");
             chkModUpdate.Name = "chkModUpdate";
-            chkModUpdate.TabStop = true;
             chkModUpdate.UseVisualStyleBackColor = true;
             // 
             // chkModeNew
             // 
+            chkModeNew.Checked = true;
             resources.ApplyResources(chkModeNew, "chkModeNew");
             chkModeNew.Name = "chkModeNew";
+            chkModeNew.TabStop = true;
             chkModeNew.UseVisualStyleBackColor = true;
             // 
             // Label1
