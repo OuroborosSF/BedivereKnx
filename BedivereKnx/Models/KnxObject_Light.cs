@@ -14,27 +14,88 @@ namespace BedivereKnx.Models
         /// </summary>
         public bool Dimmable { get; private set; }
 
+        ///// <summary>
+        ///// 开关反馈
+        ///// </summary>
+        //public GroupValue? SwitchFeedback
+        //{
+        //    get
+        //    {
+        //        _ = groups.TryGetValue(KnxObjectPart.SwitchFeedback, out KnxGroup? group);
+        //        return group?.Value;
+        //    }
+        //}
+
         /// <summary>
-        /// 开关反馈
+        /// 灯光状态
         /// </summary>
-        public GroupValue? SwitchFeedback
+        public LightStatus SwitchStatus
         {
             get
             {
-                _ = groups.TryGetValue(KnxObjectPart.SwitchFeedback, out KnxGroup? group);
-                return group?.Value;
+                if (groups.TryGetValue(KnxObjectPart.SwitchFeedback, out KnxGroup? group))
+                {
+                    if (group.Value is null)
+                    {
+                        return LightStatus.Unknown;
+                    }
+                    else if (group.Value.Equals(new GroupValue(true)))
+                    {
+                        return LightStatus.On;
+                    }
+                    else
+                    {
+                        return LightStatus.Off;
+                    }
+                }
+                else
+                {
+                    return LightStatus.Unknown;
+                }
             }
         }
 
+        ///// <summary>
+        ///// 亮度反馈
+        ///// </summary>
+        //public GroupValue? BrightnessFeedback
+        //{
+        //    get
+        //    {
+        //        if (Dimmable)
+        //        {
+        //            _ = groups.TryGetValue(KnxObjectPart.ValueFeedback, out KnxGroup? group);
+        //            return group?.Value;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //}
+
         /// <summary>
-        /// 亮度反馈
+        /// 灯光亮度
         /// </summary>
-        public GroupValue? BrightnessFeedback
+        public int Brightness
         {
             get
             {
-                _ = groups.TryGetValue(KnxObjectPart.ValueFeedback, out KnxGroup? group);
-                return group?.Value;
+                if (Dimmable && groups.TryGetValue(KnxObjectPart.ValueFeedback, out KnxGroup? group))
+                {
+                    if (group.Value is null)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return (int)group.Value.TypedValue;
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
             }
         }
 
@@ -50,7 +111,7 @@ namespace BedivereKnx.Models
             : base(KnxObjectType.Light, id, code, name, ifCode, areaCode)
         {
             Dimmable = groups.ContainsKey(KnxObjectPart.ValueControl)
-                       && groups.ContainsKey(KnxObjectPart.ValueFeedback);
+                    || groups.ContainsKey(KnxObjectPart.ValueFeedback);
         }
 
         /// <summary>
@@ -59,7 +120,10 @@ namespace BedivereKnx.Models
         /// <param name="value">控制参数，null-切换，true-开，false-关</param>
         public new void SwitchControl(bool? value = null)
         {
-            base.SwitchControl(value);
+            if (groups.ContainsKey(KnxObjectPart.ValueControl))
+            {
+                base.SwitchControl(value);
+            }
         }
 
         /// <summary>
@@ -68,9 +132,22 @@ namespace BedivereKnx.Models
         /// <param name="value">亮度值（0~100）</param>
         public void BrightnessControl(int value)
         {
-            base.WriteValue(KnxObjectPart.ValueControl, value * 2.55);
+            if (groups.ContainsKey(KnxObjectPart.ValueControl))
+            {
+                base.WriteValue(KnxObjectPart.ValueControl, value * 2.55);
+            }
         }
 
+    }
+
+    /// <summary>
+    /// 灯光状态
+    /// </summary>
+    public enum LightStatus
+    {
+        Unknown = -1,
+        Off = 0,
+        On = 1
     }
 
 }

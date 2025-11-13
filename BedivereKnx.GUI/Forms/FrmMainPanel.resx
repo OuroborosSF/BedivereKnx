@@ -142,46 +142,46 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tvArea.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <data name="tlpSwitch.AutoScroll" type="System.Boolean, mscorlib">
+  <data name="tlpBlock.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tlpSwitch.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tlpBlock.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tlpSwitch.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="tlpBlock.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="tlpSwitch.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tlpBlock.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 3</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tlpSwitch.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tlpBlock.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 22, 0</value>
   </data>
-  <data name="tlpSwitch.RowCount" type="System.Int32, mscorlib">
+  <data name="tlpBlock.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="tlpSwitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 547</value>
+  <data name="tlpBlock.Size" type="System.Drawing.Size, System.Drawing">
+    <value>816, 512</value>
   </data>
-  <data name="tlpSwitch.TabIndex" type="System.Int32, mscorlib">
+  <data name="tlpBlock.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;tlpSwitch.Name" xml:space="preserve">
-    <value>tlpSwitch</value>
+  <data name="&gt;&gt;tlpBlock.Name" xml:space="preserve">
+    <value>tlpBlock</value>
   </data>
-  <data name="&gt;&gt;tlpSwitch.Type" xml:space="preserve">
+  <data name="&gt;&gt;tlpBlock.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tlpSwitch.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tlpBlock.Parent" xml:space="preserve">
     <value>tlpMain</value>
   </data>
-  <data name="&gt;&gt;tlpSwitch.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tlpBlock.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tlpSwitch.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+  <data name="tlpBlock.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="lstGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -191,7 +191,7 @@
     <value>3, 3</value>
   </data>
   <data name="lstGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 547</value>
+    <value>4, 512</value>
   </data>
   <data name="lstGroup.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -215,13 +215,13 @@
     <value>Fill</value>
   </data>
   <data name="tlpMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 0</value>
+    <value>150, 35</value>
   </data>
   <data name="tlpMain.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tlpMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>832, 553</value>
+    <value>832, 518</value>
   </data>
   <data name="tlpMain.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -239,7 +239,202 @@
     <value>0</value>
   </data>
   <data name="tlpMain.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tlpSwitch" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lstGroup" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,10,Percent,100" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tlpBlock" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lstGroup" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,10,Percent,100" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tlpTop.ColumnCount" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="chkLight.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chkLight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="chkLight.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="chkLight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 29</value>
+  </data>
+  <data name="chkLight.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkLight.Text" xml:space="preserve">
+    <value>Lights</value>
+  </data>
+  <data name="&gt;&gt;chkLight.Name" xml:space="preserve">
+    <value>chkLight</value>
+  </data>
+  <data name="&gt;&gt;chkLight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkLight.Parent" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;chkLight.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkCurtain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chkCurtain.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkCurtain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 3</value>
+  </data>
+  <data name="chkCurtain.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="chkCurtain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 29</value>
+  </data>
+  <data name="chkCurtain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkCurtain.Text" xml:space="preserve">
+    <value>Curtains</value>
+  </data>
+  <data name="&gt;&gt;chkCurtain.Name" xml:space="preserve">
+    <value>chkCurtain</value>
+  </data>
+  <data name="&gt;&gt;chkCurtain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkCurtain.Parent" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;chkCurtain.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chkValue.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chkValue.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 3</value>
+  </data>
+  <data name="chkValue.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="chkValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 29</value>
+  </data>
+  <data name="chkValue.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkValue.Text" xml:space="preserve">
+    <value>Values</value>
+  </data>
+  <data name="&gt;&gt;chkValue.Name" xml:space="preserve">
+    <value>chkValue</value>
+  </data>
+  <data name="&gt;&gt;chkValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkValue.Parent" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;chkValue.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkEnable.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chkEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>453, 3</value>
+  </data>
+  <data name="chkEnable.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="chkEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 29</value>
+  </data>
+  <data name="chkEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkEnable.Text" xml:space="preserve">
+    <value>Enablements</value>
+  </data>
+  <data name="&gt;&gt;chkEnable.Name" xml:space="preserve">
+    <value>chkEnable</value>
+  </data>
+  <data name="&gt;&gt;chkEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkEnable.Parent" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;chkEnable.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkScene.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="chkScene.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkScene.Location" type="System.Drawing.Point, System.Drawing">
+    <value>603, 3</value>
+  </data>
+  <data name="chkScene.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 0, 0</value>
+  </data>
+  <data name="chkScene.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 29</value>
+  </data>
+  <data name="chkScene.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkScene.Text" xml:space="preserve">
+    <value>Scenes</value>
+  </data>
+  <data name="&gt;&gt;chkScene.Name" xml:space="preserve">
+    <value>chkScene</value>
+  </data>
+  <data name="&gt;&gt;chkScene.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkScene.Parent" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;chkScene.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tlpTop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="tlpTop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 0</value>
+  </data>
+  <data name="tlpTop.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tlpTop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>832, 35</value>
+  </data>
+  <data name="tlpTop.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;tlpTop.Name" xml:space="preserve">
+    <value>tlpTop</value>
+  </data>
+  <data name="&gt;&gt;tlpTop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpTop.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tlpTop.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tlpTop.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="chkLight" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="chkCurtain" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="chkValue" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="chkEnable" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="chkScene" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,150,Absolute,150,Absolute,150,Absolute,150,Absolute,150,Percent,100" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -3193,6 +3388,9 @@
         uv/PA+L8GwLZ/QAB4/4MAPD/IwL//gIA0P8A4AcAAOADAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Panel View</value>

@@ -17,7 +17,7 @@ namespace BedivereKnx.GUI.Forms
             AreaTreeInit();
             this.HorizontalScroll.Visible = false;
             tlpMain.HorizontalScroll.Visible = false;
-            tlpSwitch.HorizontalScroll.Visible = false;
+            tlpBlock.HorizontalScroll.Visible = false;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace BedivereKnx.GUI.Forms
                 IEnumerable<KnxObject> listObj = knx.Objects
                     .Where(obj => obj.AreaCode == e.Node.Name); //筛选出属于选择区域的KNX对象
                 currentControls.AddRange(ObjToControl(listObj)); //控件列表中加入KNX对象部分
-                PanelInit<KnxHmiBlockBase>(tlpSwitch, currentControls);
+                PanelInit(tlpBlock, currentControls);
             }
             this.ResumeLayout();
         }
@@ -97,7 +97,7 @@ namespace BedivereKnx.GUI.Forms
             //}
             ////MessageBox.Show(listSwitch.Count.ToString());
             ////pnlSwitch_Resize(pnlSwitch, EventArgs.Empty);
-            //PanelInit(tlpSwitch, listSwitch);
+            //PanelInit(tlpBlock, listSwitch);
         }
 
         /// <summary>
@@ -122,10 +122,18 @@ namespace BedivereKnx.GUI.Forms
                         ctlList.Add(lgt);
                         break;
                     case KnxObjectType.Curtain: //窗帘
-                        throw new NotImplementedException();
+                        KnxHmiCurtainBlock ctn = new((KnxCurtain)obj)
+                        {
+                            Dock = DockStyle.Fill,
+                        };
+                        ctlList.Add(ctn);
                         break;
                     case KnxObjectType.Value: //数值
-                        throw new NotImplementedException();
+                        KnxHmiValueBlock val = new((KnxValue)obj)
+                        {
+                            Dock = DockStyle.Fill,
+                        };
+                        ctlList.Add(val);
                         break;
                     case KnxObjectType.Enablement: //使能
                         KnxHmiEnableBlock en = new((KnxEnablement)obj)
@@ -172,20 +180,19 @@ namespace BedivereKnx.GUI.Forms
         private void PanelInit<T>(TableLayoutPanel tlp, List<T> list)
             where T : KnxHmiBlockBase, IDefaultSize
         {
-            //int colCount = (int)Math.Floor((double)tlpMain.Width / T.DefaultWidth); //列的数量
-            //int rowCount = (int)Math.Ceiling((double)list.Count / tlp.ColumnCount); //行的数量
             tlp.SuspendLayout(); //停止控件刷新
             tlp.Controls.Clear(); //清除原有控件
             tlp.RowStyles.Clear();
             tlp.ColumnStyles.Clear();
             tlp.AutoScroll = false; //禁用自动滚动
             //tlp.AutoScrollMinSize = Size.Empty;
+            List<T> listV = list.Where(x => x.Visible == true).ToList(); //只包含需要显示的控件
             tlp.ColumnCount = (int)Math.Floor((double)tlpMain.Width / T.DefaultWidth); //列的数量
             for (int c = 0; c < tlp.ColumnCount; c++)
             {
                 tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100)); //设定列的样式
             }
-            tlp.RowCount = (int)Math.Ceiling((double)list.Count / tlp.ColumnCount); //行的数量
+            tlp.RowCount = (int)Math.Ceiling((double)listV.Count / tlp.ColumnCount); //行的数量
             for (int r = 0; r < tlp.RowCount; r++)
             {
                 tlp.RowStyles.Add(new RowStyle(SizeType.Absolute, T.DefaultHeight)); //设定行的样式
@@ -193,20 +200,54 @@ namespace BedivereKnx.GUI.Forms
             tlp.RowCount += 1; //额外添加一行，防止最后一行被拉高
             //tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
             //Debug.Print($"RowCount:{tlp.RowCount}, ColumnCount: {tlp.ColumnCount}");
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < listV.Count; i++)
             {
                 int rId = i / tlp.ColumnCount;
                 int cId = i % tlp.ColumnCount;
-                tlp.Controls.Add(list[i], cId, rId);
-                //Debug.Print($"row={tlp.GetRow(list[i])}, col={tlp.GetColumn(list[i])}");
+                tlp.Controls.Add(listV[i], cId, rId);
+                //Debug.Print($"row={tlp.GetRow(listV[i])}, col={tlp.GetColumn(listV[i])}");
             }
             tlp.ResumeLayout(); //恢复控件刷新
             tlp.AutoScroll = true; //启用自动滚动
         }
 
-        private void tlpSwitch_SizeChanged(object sender, EventArgs e)
+        private void PanelFilter<T>(bool show) where T : KnxHmiBlockBase
         {
-            PanelInit(tlpSwitch, currentControls);
+            foreach (var b in currentControls.OfType<T>())
+            {
+                b.Visible = show;
+            }
+            PanelInit(tlpBlock, currentControls);
+        }
+
+        private void tlpBlock_SizeChanged(object sender, EventArgs e)
+        {
+            PanelInit(tlpBlock, currentControls);
+        }
+
+        private void chkLight_CheckedChanged(object sender, EventArgs e)
+        {
+            PanelFilter<KnxHmiLightBlock>(chkLight.Checked);
+        }
+
+        private void chkCurtain_CheckedChanged(object sender, EventArgs e)
+        {
+            PanelFilter<KnxHmiCurtainBlock>(chkCurtain.Checked);
+        }
+
+        private void chkValue_CheckedChanged(object sender, EventArgs e)
+        {
+            PanelFilter<KnxHmiValueBlock>(chkValue.Checked);
+        }
+
+        private void chkEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            PanelFilter<KnxHmiEnableBlock>(chkEnable.Checked);
+        }
+
+        private void chkScene_CheckedChanged(object sender, EventArgs e)
+        {
+            PanelFilter<KnxHmiSceneBlock>(chkScene.Checked);
         }
 
     }

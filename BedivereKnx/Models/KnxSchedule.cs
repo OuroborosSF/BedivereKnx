@@ -76,8 +76,10 @@ namespace BedivereKnx.Models
             if (TimerState != KnxScheduleTimerState.Stoped) return; //定时器停止时才能启动
             if (Sequence.Count == 0) return; //定时队列为空的情况下不启动定时器
             TimerStop();
-            int due = 60 - DateTime.Now.Minute; //同步至整分钟所差分钟数
-            timer.Change(due, 60000); //定时器在下个整分钟触发，然后每分钟触发一次
+            DateTime now = DateTime.Now; //当前时间
+            DateTime nextMinute = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0).AddMinutes(1);
+            TimeSpan dueTime = nextMinute - now; //到下个分钟的时间间隔
+            timer.Change(dueTime, TimeSpan.FromMinutes(1)); //定时器在下个整分钟触发，然后每分钟触发一次
             timerState = KnxScheduleTimerState.Starting;
         }
 
