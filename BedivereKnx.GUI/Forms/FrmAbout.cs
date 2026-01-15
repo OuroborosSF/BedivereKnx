@@ -48,7 +48,7 @@
 
         private void lblGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CommonUtilities.OpenUrl("https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx");
+            CommonUtilities.OpenUrl("https://www.github.com/OuroborosSF/BedivereKnx");
         }
 
         private void btnLicense_Click(object sender, EventArgs e)

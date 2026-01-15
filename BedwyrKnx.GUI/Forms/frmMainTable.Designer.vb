@@ -624,7 +624,7 @@ Partial Class frmMainTable
         slblGithub.IsLink = True
         slblGithub.Name = "slblGithub"
         slblGithub.Size = New Size(478, 20)
-        slblGithub.Text = "https://github.com/OuroborosSoftwareFoundation/BedivereKnx"
+        slblGithub.Text = "https://github.com/OuroborosSF/BedivereKnx"
         ' 
         ' btnDevicePoll
         ' 

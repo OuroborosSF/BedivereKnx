@@ -23,7 +23,7 @@
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <ApplicationIcon>Resources\ico_Bedivere.ico</ApplicationIcon>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
-    <PackageProjectUrl>https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx</PackageProjectUrl>
+    <PackageProjectUrl>https://www.github.com/OuroborosSF/BedivereKnx</PackageProjectUrl>
     <Product>Bedivere Knx GUI</Product>
   </PropertyGroup>
 

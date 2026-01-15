@@ -18,7 +18,7 @@
     <Title>$(AssemblyName)</Title>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx</PackageProjectUrl>
+    <PackageProjectUrl>https://www.github.com/OuroborosSF/BedivereKnx</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

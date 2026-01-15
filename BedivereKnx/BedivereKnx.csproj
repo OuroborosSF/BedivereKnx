@@ -12,7 +12,7 @@
     <Company>Ouroboros Software Foundation</Company>
     <Description>A KNX Library depends on Falcon SDK.</Description>
     <Copyright>© 2024 $(Company)</Copyright>
-    <PackageProjectUrl>https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx</PackageProjectUrl>
+    <PackageProjectUrl>https://www.github.com/OuroborosSF/BedivereKnx</PackageProjectUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>

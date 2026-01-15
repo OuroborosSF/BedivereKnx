@@ -484,7 +484,7 @@ Public Class frmMainTable
     'End Sub
 
     'Private Sub slblGithub_Click(sender As Object, e As EventArgs) Handles slblGithub.Click
-    'OpenUrl("https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx")
+    'OpenUrl("https://www.github.com/OuroborosSF/BedivereKnx")
     'End Sub
 
     Private Sub frmMainTable_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing

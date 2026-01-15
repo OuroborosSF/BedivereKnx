@@ -231,7 +231,7 @@ Public Class frmMain
 
     'Github链接
     Private Sub slblGithub_Click(sender As Object, e As EventArgs) Handles slblGithub.Click
-        OpenUrl("https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx")
+        OpenUrl("https://www.github.com/OuroborosSF/BedivereKnx")
     End Sub
 
     ''' <summary>

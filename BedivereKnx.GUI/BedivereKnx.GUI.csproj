@@ -13,7 +13,7 @@
     <Company>Ouroboros Software Foundation</Company>
     <Product>Bedivere Knx GUI</Product>
     <Copyright>© 2024 $(Company)</Copyright>
-    <PackageProjectUrl>https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx</PackageProjectUrl>
+    <PackageProjectUrl>https://www.github.com/OuroborosSF/BedivereKnx</PackageProjectUrl>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>

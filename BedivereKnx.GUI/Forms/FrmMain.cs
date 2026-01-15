@@ -335,7 +335,7 @@ namespace BedivereKnx.GUI.Forms
         /// </summary>
         private void slblGithub_Click(object sender, EventArgs e)
         {
-            CommonUtilities.OpenUrl("https://www.github.com/OuroborosSoftwareFoundation/BedivereKnx");
+            CommonUtilities.OpenUrl("https://www.github.com/OuroborosSF/BedivereKnx");
         }
 
         /// <summary>
