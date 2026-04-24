@@ -23,6 +23,7 @@
 //   你理当已收到一份GNU通用公共许可协议的副本。
 //   如果没有，请查阅 <http://www.gnu.org/licenses/> 
 
+using Ouroboros.AuthManager;
 using System.Reflection;
 
 namespace BedivereKnx.GUI
@@ -96,18 +97,29 @@ namespace BedivereKnx.GUI
             try
             {
                 Globals.AuthInfo = new();
+                if (Globals.AuthInfo.Status != AuthorizationStatus.Unknown)
+                {
+                    UnknownError();
+                }
             }
             catch (Exception ex)
             {
-                DialogResult result = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                if (result == DialogResult.Retry)
+                if (ex is AuthorizationException) //授权故障
                 {
-                    Forms.FrmAuthModify frmAuthModify = new(ex.Message);
-                    frmAuthModify.ShowDialog();
+                    DialogResult result = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == DialogResult.Retry)
+                    {
+                        Forms.FrmAuthModify frmAuthModify = new(ex.Message);
+                        frmAuthModify.ShowDialog();
+                    }
+                    else
+                    {
+                        Environment.Exit(-1);
+                    }
                 }
                 else
                 {
-                    Environment.Exit(-1);
+                    UnknownError();
                 }
             }
 #if DEBUG
@@ -148,6 +160,17 @@ namespace BedivereKnx.GUI
             mutex.ReleaseMutex();
         }
 
+        private static void UnknownError()
+        {
+            DialogResult result = MessageBox.Show("The application failed to start due to an unknown error. \n(Error Code: 0x006B6E78)‌ \nClick 'OK' to visit the project page on GitHub.", "Unexpected Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.OK)
+            {
+                CommonUtilities.OpenUrl("https://www.github.com/OuroborosSF/BedivereKnx");
+            }
+            Environment.Exit(-1);
+
+        }
     }
+
 
 }

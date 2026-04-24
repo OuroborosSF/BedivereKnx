@@ -120,7 +120,7 @@ namespace BedivereKnx.Models
         /// <param name="value">控制参数，null-切换，true-开，false-关</param>
         public new void SwitchControl(bool? value = null)
         {
-            if (groups.ContainsKey(KnxObjectPart.ValueControl))
+            if (groups.ContainsKey(KnxObjectPart.SwitchControl))
             {
                 base.SwitchControl(value);
             }
