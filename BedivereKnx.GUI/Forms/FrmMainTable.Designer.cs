@@ -419,6 +419,7 @@
             // 
             btnTelLogClear.Name = "btnTelLogClear";
             resources.ApplyResources(btnTelLogClear, "btnTelLogClear");
+            btnTelLogClear.Click += btnTelLogClear_Click;
             // 
             // ToolStripSeparator1
             // 
@@ -429,6 +430,7 @@
             // 
             btnTelLogExport.Name = "btnTelLogExport";
             resources.ApplyResources(btnTelLogExport, "btnTelLogExport");
+            btnTelLogExport.Click += btnTelLogExport_Click;
             // 
             // tmPoll
             // 

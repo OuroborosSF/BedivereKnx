@@ -215,7 +215,7 @@ namespace BedivereKnx.GUI.Forms
         /// </summary>
         /// <param name="e"></param>
         /// <param name="log"></param>
-        private void MessageTransmission(KnxMsgEventArgs e, string? log)
+        private void MessageTransmission(KnxMsgEventArgs e, string? info)
         {
             if (e.Value is null) return;
             if (e.MessageType != KnxMessageType.FromBus) return; //只接收来自总线的报文

@@ -126,10 +126,10 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnSchedule.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 370</value>
+    <value>0, 414</value>
   </data>
   <data name="btnSchedule.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 41</value>
+    <value>1018, 41</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnSchedule.TabIndex" type="System.Int32, mscorlib">
@@ -179,7 +179,7 @@
     <value>51</value>
   </data>
   <data name="dgvSchedule.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 370</value>
+    <value>1018, 414</value>
   </data>
   <data name="dgvSchedule.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -200,7 +200,7 @@
     <value>4, 29</value>
   </data>
   <data name="tpSchedule.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 411</value>
+    <value>1018, 455</value>
   </data>
   <data name="tpSchedule.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -233,7 +233,7 @@
     <value>51</value>
   </data>
   <data name="dgvDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 371</value>
+    <value>1018, 415</value>
   </data>
   <data name="dgvDevice.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -257,10 +257,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnDevicePoll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 371</value>
+    <value>0, 415</value>
   </data>
   <data name="btnDevicePoll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 40</value>
+    <value>1018, 40</value>
   </data>
   <data name="btnDevicePoll.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -284,7 +284,7 @@
     <value>4, 29</value>
   </data>
   <data name="tpDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 411</value>
+    <value>1018, 455</value>
   </data>
   <data name="tpDevice.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -308,10 +308,10 @@
     <value>Bottom</value>
   </data>
   <data name="btnCtlScn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 361</value>
+    <value>0, 405</value>
   </data>
   <data name="btnCtlScn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 50</value>
+    <value>1018, 50</value>
   </data>
   <data name="btnCtlScn.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -344,7 +344,7 @@
     <value>51</value>
   </data>
   <data name="dgvScene.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 361</value>
+    <value>1018, 405</value>
   </data>
   <data name="dgvScene.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -365,7 +365,7 @@
     <value>4, 29</value>
   </data>
   <data name="tpScene.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 411</value>
+    <value>1018, 455</value>
   </data>
   <data name="tpScene.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -692,7 +692,7 @@
     <value>51</value>
   </data>
   <data name="dgvEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 361</value>
+    <value>1018, 405</value>
   </data>
   <data name="dgvEnable.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -716,7 +716,7 @@
     <value>Top, Bottom, Right</value>
   </data>
   <data name="btnEnTrue.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 3</value>
+    <value>329, 3</value>
   </data>
   <data name="btnEnTrue.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 30, 3</value>
@@ -749,7 +749,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnEnFalse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>498, 3</value>
+    <value>539, 3</value>
   </data>
   <data name="btnEnFalse.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>30, 3, 3, 3</value>
@@ -779,13 +779,13 @@
     <value>Bottom</value>
   </data>
   <data name="tableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 361</value>
+    <value>0, 405</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 50</value>
+    <value>1018, 50</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -809,7 +809,7 @@
     <value>4, 29</value>
   </data>
   <data name="tpEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>936, 411</value>
+    <value>1018, 455</value>
   </data>
   <data name="tpEnable.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1035,6 +1035,9 @@
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>73</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>9, 20</value>

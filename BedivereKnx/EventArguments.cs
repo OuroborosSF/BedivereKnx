@@ -23,7 +23,7 @@ namespace BedivereKnx
     /// <summary>
     /// KNX报文传输委托
     /// </summary>
-    public delegate void KnxMessageHandler(KnxMsgEventArgs e, string? log);
+    public delegate void KnxMessageHandler(KnxMsgEventArgs e, string? info);
 
     /// <summary>
     /// KNX设备状态委托
@@ -104,6 +104,17 @@ namespace BedivereKnx
             SourceAddress = indAddr;
             IsSecure = isSecure;
             Value = val;
+        }
+
+        /// <summary>
+        /// 生成报文事件的日志
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string? value = Value?.ToString();
+            string valueString = value is null ? string.Empty : $" = {value}";
+            return $"{MessageType}|{EventType}: {SourceAddress} -> {DestinationAddress}{valueString} ({MessagePriority}, Hop={HopCount})";
         }
 
     }

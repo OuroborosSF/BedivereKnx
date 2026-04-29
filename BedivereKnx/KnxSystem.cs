@@ -40,7 +40,7 @@ namespace BedivereKnx
     public class KnxSystem
     {
 
-        private static string? AsmName => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        private static string AsmName => System.Reflection.Assembly.GetExecutingAssembly().GetName().Name ?? "BedivereKnx";
 
         /// <summary>
         /// 报文收发传输事件
@@ -107,7 +107,8 @@ namespace BedivereKnx
         /// <summary>
         /// 报文日志
         /// </summary>
-        public DataTable MessageLog { get; private set; } = new DataTable();
+        public KnxMessageLogger MessageLog { get; private set; }
+        //public DataTable MessageLogTable { get; private set; } = new DataTable();
 
         private KnxSystem(DataTableCollection dtc, IPAddress? localIp)
         {
@@ -196,13 +197,16 @@ namespace BedivereKnx
                     //throw new Exception(string.Format(ResString.ExMsg_TableMiss, "Links"));
                 }
 
-                MsgLogTableInit(); //初始化报文日志表
+                //日志
+                //MsgLogTableInit(); //初始化报文日志表
+                MessageLog = new(false);
+                MessageTransmission += MessageLog.OnMessageTransmission;
             }
             catch (Exception)
             {
                 throw;
             }
-            MessageTransmission += OnMessageTransmission;
+            //MessageTransmission += OnMessageTransmission;
         }
 
         /// <summary>
@@ -285,67 +289,65 @@ namespace BedivereKnx
             }
         }
 
-        /// <summary>
-        /// 初始化报文日志表
-        /// </summary>
-        private void MsgLogTableInit()
-        {
-            MessageLog = new DataTable();
-            MessageLog.Columns.Add("DateTime", "DateTime", typeof(DateTime)); //报文时间
-            MessageLog.Columns.Add("MessageType", "MessageType", typeof(KnxMessageType)); //报文类型
-            MessageLog.Columns.Add("EventType", "EventType", typeof(GroupEventType)); //事件类型
-            MessageLog.Columns.Add("SourceAddress", "SourceAddress", typeof(IndividualAddress)); //源地址
-            MessageLog.Columns.Add("DestinationAddress", "DestinationAddress", typeof(GroupAddress)); //目标地址
-            MessageLog.Columns.Add("MessagePriority", "MessagePriority", typeof(MessagePriority)); //优先级
-            MessageLog.Columns.Add("Value", "Value", typeof(GroupValue)); //值
-            MessageLog.Columns.Add("HopCount", "HopCount", typeof(byte)); //路由计数
-            MessageLog.Columns.Add("IsSecure", "IsSecure", typeof(bool)); //安全性
-            MessageLog.Columns.Add("Log", "Log", typeof(string)); //日志
-        }
+        ///// <summary>
+        ///// 初始化报文日志表
+        ///// </summary>
+        //private void MsgLogTableInit()
+        //{
+        //    MessageLogTable = new DataTable();
+        //    MessageLogTable.Columns.Add("DateTime", "DateTime", typeof(DateTime)); //报文时间
+        //    MessageLogTable.Columns.Add("MessageType", "MessageType", typeof(KnxMessageType)); //报文类型
+        //    MessageLogTable.Columns.Add("EventType", "EventType", typeof(GroupEventType)); //事件类型
+        //    MessageLogTable.Columns.Add("SourceAddress", "SourceAddress", typeof(IndividualAddress)); //源地址
+        //    MessageLogTable.Columns.Add("DestinationAddress", "DestinationAddress", typeof(GroupAddress)); //目标地址
+        //    MessageLogTable.Columns.Add("MessagePriority", "MessagePriority", typeof(MessagePriority)); //优先级
+        //    MessageLogTable.Columns.Add("Value", "Value", typeof(GroupValue)); //值
+        //    MessageLogTable.Columns.Add("HopCount", "HopCount", typeof(byte)); //路由计数
+        //    MessageLogTable.Columns.Add("IsSecure", "IsSecure", typeof(bool)); //安全性
+        //    MessageLogTable.Columns.Add("Info", "Info", typeof(string)); //额外信息
+        //}
+
+        ///// <summary>
+        ///// 报文传输事件
+        ///// </summary>
+        ///// <param name="e">KNX报文事件参数</param>
+        ///// <param name="info">额外信息</param>
+        //private void OnMessageTransmission(KnxMsgEventArgs e, string? info)
+        //{
+        //    DataRow dr = MessageLogTable.NewRow();
+        //    dr["DateTime"] = DateTime.Now;
+        //    dr["MessageType"] = e.MessageType;
+        //    dr["EventType"] = e.EventType;
+        //    dr["SourceAddress"] = e.SourceAddress;
+        //    dr["DestinationAddress"] = e.DestinationAddress;
+        //    dr["MessagePriority"] = e.MessagePriority;
+        //    if (e.Value is not null) dr["Value"] = e.Value;
+        //    dr["HopCount"] = e.HopCount;
+        //    dr["IsSecure"] = e.IsSecure;
+        //    dr["Info"] = info;
+        //    MessageLogTable.Rows.Add(dr);
+        //}
 
         /// <summary>
         /// 报文接受事件
         /// </summary>
-        /// <param name="e"></param>
-        /// <param name="log"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void OnGroupMessageReceived(KnxMsgEventArgs e, string? log)
+        /// <param name="e">KNX报文事件参数</param>
+        /// <param name="info">额外信息</param>
+        private void OnGroupMessageReceived(KnxMsgEventArgs e, string? info)
         {
             if (e.Value is null) return; //无视没有值的报文
             if (e.EventType == GroupEventType.ValueWrite || e.EventType == GroupEventType.ValueResponse)
             {
                 Objects.ReceiveGroupMessage(e.DestinationAddress, e.Value);
             }
-            MessageTransmission?.Invoke(e, null); //触发报文传输事件
-        }
-
-        /// <summary>
-        /// 报文传输事件
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="log"></param>
-        private void OnMessageTransmission(KnxMsgEventArgs e, string? log)
-        {
-            DataRow dr = MessageLog.NewRow();
-            dr["DateTime"] = DateTime.Now;
-            dr["MessageType"] = e.MessageType;
-            dr["EventType"] = e.EventType;
-            dr["SourceAddress"] = e.SourceAddress;
-            dr["DestinationAddress"] = e.DestinationAddress;
-            dr["MessagePriority"] = e.MessagePriority;
-            if (e.Value is not null) dr["Value"] = e.Value;
-            dr["HopCount"] = e.HopCount;
-            dr["IsSecure"] = e.IsSecure;
-            dr["Log"] = log;
-            MessageLog.Rows.Add(dr);
+            MessageTransmission?.Invoke(e, "Received message"); //触发报文传输事件
         }
 
         /// <summary>
         /// 组地址写入请求
         /// </summary>
-        /// <param name="e"></param>
-        /// <param name="value"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="e">KNX组事件参数</param>
+        /// <param name="value">值</param>
         private void OnGroupWriteRequest(KnxGroupEventArgs e, GroupValue value)
         {
             WriteGroupAddress(e.InterfaceCode, e.GroupAddress, value, e.Priority);
@@ -356,7 +358,7 @@ namespace BedivereKnx
         /// </summary>
         /// <param name="ifCode">接口编号</param>
         /// <param name="address">组地址</param>
-        /// <param name="val">值</param>
+        /// <param name="value">值</param>
         /// <param name="priority">优先级</param>
         public async void WriteGroupAddress(string? ifCode, GroupAddress address, GroupValue value, MessagePriority priority = MessagePriority.Low)
         {
@@ -368,7 +370,7 @@ namespace BedivereKnx
             if (bus.ConnectionState == BusConnectionState.Connected)
             {
                 KnxMsgEventArgs mea = new(KnxMessageType.ToBus, GroupEventType.ValueWrite, priority, 6, address, bus.InterfaceConfiguration.IndividualAddress, false, value);
-                MessageTransmission?.Invoke(mea, $"By {AsmName}"); //触发事件
+                MessageTransmission?.Invoke(mea, $"Write by {AsmName}"); //触发事件
                 await bus.WriteGroupValueAsync(address, value, priority);
                 Thread.Sleep(150); //短暂停顿防止丢包
             }
@@ -377,8 +379,7 @@ namespace BedivereKnx
         /// <summary>
         /// 组地址读取请求
         /// </summary>
-        /// <param name="e"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="e">KNX组事件参数</param>
         private void OnGroupReadRequest(KnxGroupEventArgs e)
         {
             ReadGroupAddress(e.InterfaceCode, e.GroupAddress, e.Priority);
@@ -395,7 +396,7 @@ namespace BedivereKnx
             if (bus.ConnectionState == BusConnectionState.Connected)
             {
                 KnxMsgEventArgs mea = new(KnxMessageType.ToBus, GroupEventType.ValueRead, priority, 6, address, bus.InterfaceConfiguration.IndividualAddress, false);
-                MessageTransmission?.Invoke(mea, $"By {AsmName}"); //触发事件
+                MessageTransmission?.Invoke(mea, $"Read by {AsmName}"); //触发事件
                 await bus.ReadGroupValueAsync(address, new TimeSpan(0, 0, 0, 0, 100), priority);
             }
         }

@@ -63,6 +63,7 @@
             Menu_ToolEtsImport = new ToolStripMenuItem();
             toolStripSeparator5 = new ToolStripSeparator();
             Menu = new ToolStrip();
+            btnAuth = new ToolStripButton();
             stsBottom.SuspendLayout();
             Menu.SuspendLayout();
             SuspendLayout();
@@ -264,10 +265,19 @@
             // 
             Menu.GripStyle = ToolStripGripStyle.Hidden;
             Menu.ImageScalingSize = new Size(20, 20);
-            Menu.Items.AddRange(new ToolStripItem[] { ToolStripDropDownButton1, btnGrid, btnPanel, btnHmi, lblDateTime, lblCtDn, lblAuth });
+            Menu.Items.AddRange(new ToolStripItem[] { ToolStripDropDownButton1, btnGrid, btnPanel, btnHmi, lblDateTime, lblCtDn, lblAuth, btnAuth });
             resources.ApplyResources(Menu, "Menu");
             Menu.Name = "Menu";
             Menu.RenderMode = ToolStripRenderMode.System;
+            // 
+            // btnAuth
+            // 
+            btnAuth.Alignment = ToolStripItemAlignment.Right;
+            resources.ApplyResources(btnAuth, "btnAuth");
+            btnAuth.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnAuth.Image = Resources.Images.Icon_Auth;
+            btnAuth.Name = "btnAuth";
+            btnAuth.Click += btnAuth_Click;
             // 
             // FrmMain
             // 
@@ -323,5 +333,6 @@
         internal ToolStrip Menu;
         private ToolStripMenuItem Menu_ToolEtsImport;
         private ToolStripSeparator toolStripSeparator5;
+        private ToolStripButton btnAuth;
     }
 }

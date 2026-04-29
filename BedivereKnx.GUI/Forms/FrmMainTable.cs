@@ -1,6 +1,6 @@
 ﻿using BedivereKnx.Models;
 using Knx.Falcon;
-using System.Diagnostics;
+using System.Text;
 
 namespace BedivereKnx.GUI.Forms
 {
@@ -480,24 +480,74 @@ namespace BedivereKnx.GUI.Forms
 
         #endregion
 
+        #region 链接
+
         private void btnLink_Click(object sender, EventArgs e)
         {
             new FrmLink().ShowOrFront();
         }
+
+        #endregion
 
         #region 日志
 
         /// <summary>
         /// KNX报文传输事件
         /// </summary>
-        private void KnxMessageTransmission(KnxMsgEventArgs e, string? log)
+        private void KnxMessageTransmission(KnxMsgEventArgs e, string? info)
         {
             string? value = e.Value?.ToString();
             string valueString = value is null ? string.Empty : $" = {value}";
             this.Invoke((MethodInvoker)delegate
-            { //在UI线程上进行操作
-                lstTelLog.Items.Insert(0, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]{e.MessageType}|{e.EventType}: {e.SourceAddress} -> {e.DestinationAddress}{valueString} ({e.MessagePriority}, Hop={e.HopCount})");
+            {
+                //在UI线程上进行操作
+                //lstTelLog.Items.Insert(0, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]{e.MessageType}|{e.EventType}: {e.SourceAddress} -> {e.DestinationAddress}{valueString} ({e.MessagePriority}, Hop={e.HopCount})");
+                lstTelLog.Items.Insert(0, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]{e.ToString()}");
             });
+        }
+
+        /// <summary>
+        /// 清除日志
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTelLogClear_Click(object sender, EventArgs e)
+        {
+            lstTelLog.Items.Clear();
+        }
+
+        /// <summary>
+        /// 导出日志
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTelLogExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new()
+            {
+                InitialDirectory = Application.StartupPath,
+                Filter = "Log File(*.log)|*.log",
+                FileName = $"KnxMessageLog_{DateTime.Now:yyyyMMddHHmmss}.log",
+            };
+            if ((sfd.ShowDialog() == DialogResult.OK) && (sfd.FileName is not null))
+            {
+                LogExport(sfd.FileName);
+            }
+        }
+
+        /// <summary>
+        /// 导出报文日志
+        /// </summary>
+        /// <param name="fp">导出的文件路径</param>
+        private void LogExport(string fp)
+        {
+            StreamWriter sw = new(fp, true, Encoding.UTF8);
+            for (int i = lstTelLog.Items.Count - 1; i >= 0; i--) //倒序循环
+            {
+                sw.WriteLine(lstTelLog.Items[i].ToString());
+            }
+            sw.Flush();
+            sw.Close();
         }
 
         #endregion

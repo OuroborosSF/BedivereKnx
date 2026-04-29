@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="slblGithub.Size" type="System.Drawing.Size, System.Drawing">
-    <value>478, 20</value>
+    <value>347, 20</value>
   </data>
   <data name="slblGithub.Text" xml:space="preserve">
     <value>https://github.com/OuroborosSF/BedivereKnx</value>
@@ -171,7 +171,7 @@
     <value>232, 15</value>
   </metadata>
   <data name="slblSpring.Size" type="System.Drawing.Size, System.Drawing">
-    <value>471, 20</value>
+    <value>602, 20</value>
   </data>
   <data name="stsBottom.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 627</value>
@@ -363,6 +363,15 @@
   <metadata name="Menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 15</value>
   </metadata>
+  <data name="btnAuth.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnAuth.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btnAuth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 28</value>
+  </data>
   <data name="Menu.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -3526,6 +3535,12 @@
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnAuth.Name" xml:space="preserve">
+    <value>btnAuth</value>
+  </data>
+  <data name="&gt;&gt;btnAuth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmMain</value>

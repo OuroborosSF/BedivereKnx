@@ -289,6 +289,11 @@ namespace BedivereKnx.GUI.Forms
             new FrmAuth().ShowDialog();
         }
 
+        private void btnAuth_Click(object sender, EventArgs e)
+        {
+            new FrmAuth().ShowDialog();
+        }
+
         /// <summary>
         /// 关于按钮
         /// </summary>

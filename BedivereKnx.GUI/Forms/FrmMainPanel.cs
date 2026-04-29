@@ -180,6 +180,7 @@ namespace BedivereKnx.GUI.Forms
         private void PanelInit<T>(TableLayoutPanel tlp, List<T> list)
             where T : KnxHmiBlockBase, IDefaultSize
         {
+            if (tlpMain.Width < T.DefaultWidth) return; //防止窗体过窄时报错
             tlp.SuspendLayout(); //停止控件刷新
             tlp.Controls.Clear(); //清除原有控件
             tlp.RowStyles.Clear();
@@ -222,7 +223,10 @@ namespace BedivereKnx.GUI.Forms
 
         private void tlpBlock_SizeChanged(object sender, EventArgs e)
         {
-            PanelInit(tlpBlock, currentControls);
+            if (this.WindowState != FormWindowState.Minimized) // 防止最小化时触发事件报错
+            {
+                PanelInit(tlpBlock, currentControls);
+            }
         }
 
         private void chkLight_CheckedChanged(object sender, EventArgs e)

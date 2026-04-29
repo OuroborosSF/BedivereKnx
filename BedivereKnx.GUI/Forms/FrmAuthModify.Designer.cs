@@ -59,15 +59,17 @@
             // btnOK
             // 
             resources.ApplyResources(btnOK, "btnOK");
+            btnOK.BackColor = Color.SkyBlue;
             btnOK.Name = "btnOK";
-            btnOK.UseVisualStyleBackColor = true;
+            btnOK.UseVisualStyleBackColor = false;
             btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
             resources.ApplyResources(btnCancel, "btnCancel");
+            btnCancel.BackColor = Color.MistyRose;
             btnCancel.Name = "btnCancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // tlpMain
@@ -125,6 +127,7 @@
             AcceptButton = btnOK;
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.PaleGoldenrod;
             CancelButton = btnCancel;
             ControlBox = false;
             Controls.Add(tlpMain);

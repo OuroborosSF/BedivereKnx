@@ -1,4 +1,5 @@
-﻿using Ouroboros.AuthManager.Eos;
+﻿using Ouroboros.AuthManager;
+using Ouroboros.AuthManager.Eos;
 
 namespace BedivereKnx.GUI.Forms
 {
@@ -25,7 +26,11 @@ namespace BedivereKnx.GUI.Forms
             lvAuth.Items["ProductName"]!.SubItems.Add(auth.ProductName);
             lvAuth.Items["Version"]!.SubItems.Add(auth.Version.ToString());
             //if (auth.ExpiryDate.Date < DateTime.MaxValue.Date)
-            if (auth.ExpiryDate.Date < DateTime.Now.Date.AddMonths(3))
+            if (auth.Status == AuthorizationStatus.Special)
+            {
+                lvAuth.Items["ExpiryDate"]!.SubItems.Add("[Permanent]");
+            }
+            else if (auth.ExpiryDate.Date < DateTime.Now.Date.AddMonths(3))
             {
                 lvAuth.Items["ExpiryDate"]!.SubItems.Add("(Hidden)");
             }
@@ -45,7 +50,7 @@ namespace BedivereKnx.GUI.Forms
             if ((lvAuth.SelectedItems is null) || lvAuth.SelectedItems.Count == 0) return;
             if (e.Button == MouseButtons.Left)
             {
-                if (lvAuth.SelectedItems[0].Name == "ExpiryDate")
+                if (lvAuth.SelectedItems[0].Name == "ExpiryDate" && lvAuth.SelectedItems[0].Text == "(Hidden)")
                 {
                     MessageBox.Show($"Expiration Date: {auth!.ExpiryDate:d}", "Expiration Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
