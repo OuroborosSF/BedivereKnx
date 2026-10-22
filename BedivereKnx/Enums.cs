@@ -24,11 +24,29 @@
     public enum KnxObjectPart
     {
         None,
+        /// <summary>
+        /// 开关控制
+        /// </summary>
         SwitchControl,
+        /// <summary>
+        /// 开关反馈
+        /// </summary>
         SwitchFeedback,
+        /// <summary>
+        /// 数值控制
+        /// </summary>
         ValueControl,
+        /// <summary>
+        /// 数值反馈
+        /// </summary>
         ValueFeedback,
+        /// <summary>
+        /// 调光控制
+        /// </summary>
         DimmingControl,
+        /// <summary>
+        /// 场景控制
+        /// </summary>
         SceneControl
     }
 

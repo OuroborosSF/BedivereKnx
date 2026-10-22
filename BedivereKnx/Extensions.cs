@@ -1,5 +1,6 @@
-﻿using System.Data;
-using Knx.Falcon.ApplicationData.DatapointTypes;
+﻿using Knx.Falcon.ApplicationData.DatapointTypes;
+using System.ComponentModel;
+using System.Data;
 
 namespace BedivereKnx
 {
@@ -46,6 +47,76 @@ namespace BedivereKnx
             else //有DPST的情况
             {
                 return $"{dpt.MainNumber}.{dpt.SubNumber.ToString().PadLeft(3, '0')}:{dpt.Text}";
+            }
+        }
+
+    }
+
+    public static class KnxObjectPartExtensions
+    {
+
+        /// <summary>
+        /// 从字符串获取KnxObjectPart枚举
+        /// </summary>
+        /// <param name="_"></param>
+        /// <param name="partString"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidEnumArgumentException"></exception>
+        public static KnxObjectPart FromString(this KnxObjectPart _, string partString)
+        {
+            partString = partString.Trim().ToLower(); //去掉首位空格并转为小写
+            //开关
+            if (partString.Contains("sw"))
+            {
+                //控制
+                if (partString.Contains("ctl") || partString.Contains("control"))
+                {
+                    return KnxObjectPart.SwitchControl;
+                }
+                //反馈
+                else if (partString.Contains("fdb") || partString.Contains("feedback"))
+                {
+                    return KnxObjectPart.SwitchFeedback;
+                }
+                //其他情况报错
+                else
+                {
+                    throw new InvalidEnumArgumentException(string.Format(ResString.ExMsg_KnxObjectPartInvalid, partString));
+                }
+            }
+            //数值
+            else if (partString.Contains("val"))
+            {
+                //控制
+                if (partString.Contains("ctl") || partString.Contains("control"))
+                {
+                    return KnxObjectPart.ValueControl;
+                }
+                //反馈
+                else if (partString.Contains("fdb") || partString.Contains("feedback"))
+                {
+                    return KnxObjectPart.ValueFeedback;
+                }
+                //其他情况报错
+                else
+                {
+                    throw new InvalidEnumArgumentException(string.Format(ResString.ExMsg_KnxObjectPartInvalid, partString));
+                }
+            }
+            //调光
+            else if (partString.Contains("dim"))
+            {
+                return KnxObjectPart.DimmingControl;
+            }
+            //场景
+            else if (partString.Contains("scn") || partString.Contains("scene"))
+            {
+                return KnxObjectPart.SceneControl;
+            }
+            //其他情况报错
+            else
+            {
+                throw new InvalidEnumArgumentException(string.Format(ResString.ExMsg_KnxObjectPartInvalid, partString));
             }
         }
 

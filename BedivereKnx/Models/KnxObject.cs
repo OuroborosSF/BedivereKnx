@@ -129,13 +129,21 @@ namespace BedivereKnx.Models
         {
             get
             {
-                KnxObjectPart part = KnxGroupFactory.GetKnxObjectPart(partString);
-                return this[part];
+                //KnxObjectPart part = KnxGroupFactory.GetKnxObjectPart(partString);
+                //return this[part];
+                KnxObjectPart part = KnxObjectPart.None;
+                return this[part.FromString(partString)];
             }
             set
             {
-                KnxObjectPart part = KnxGroupFactory.GetKnxObjectPart(partString);
-                this[part] = value;
+                //KnxObjectPart part = KnxGroupFactory.GetKnxObjectPart(partString);
+                //this[part] = value;
+                KnxObjectPart part = KnxObjectPart.None;
+                part = part.FromString(partString);
+                if (this.ContainsPart(part))
+                {
+                    this[part] = value;
+                }
             }
         }
 
