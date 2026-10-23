@@ -49,7 +49,7 @@ namespace BedivereKnx.GUI
                         }
                     }
                 }
-                sw.WriteLine(string.Join(','), line); //写入一行数据
+                sw.WriteLine(string.Join(',', line)); //写入一行数据
             }
             sw.Flush(); //保存
             sw.Close(); //关闭

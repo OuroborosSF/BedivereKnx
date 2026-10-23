@@ -1,4 +1,6 @@
-﻿namespace BedivereKnx.Models
+﻿using LiteDB;
+
+namespace BedivereKnx.Models
 {
 
     /// <summary>
@@ -30,16 +32,19 @@
         /// <summary>
         /// 上级区域
         /// </summary>
+        [BsonIgnore]
         public AreaNode? ParentArea { get; internal set; }
 
         /// <summary>
         /// 下级区域
         /// </summary>
+        [BsonIgnore]
         public List<AreaNode> ChildrenAreas { get; } = [];
 
         /// <summary>
         /// 是否包含下级区域
         /// </summary>
+        [BsonIgnore]
         public bool HasChildren => ChildrenAreas.Count > 0;
 
         /// <summary>

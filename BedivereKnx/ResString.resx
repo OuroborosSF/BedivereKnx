@@ -309,4 +309,13 @@
   <data name="Hdr_ValFdb" xml:space="preserve">
     <value>Value Feedback</value>
   </data>
+  <data name="ExMsg_DbNotFound" xml:space="preserve">
+    <value>Invalid Database file path: {0}.</value>
+  </data>
+  <data name="ExMsg_DbCloseFailed" xml:space="preserve">
+    <value>Database close failed.</value>
+  </data>
+  <data name="ExMsg_DbNotInit" xml:space="preserve">
+    <value>Database is not initialized. Please call the SwitchDb method first.</value>
+  </data>
 </root>

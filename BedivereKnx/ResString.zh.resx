@@ -309,4 +309,13 @@
   <data name="Hdr_ValFdb" xml:space="preserve">
     <value>数值反馈</value>
   </data>
+  <data name="ExMsg_DbNotFound" xml:space="preserve">
+    <value>无效的数据库路径：{0}.</value>
+  </data>
+  <data name="ExMsg_DbCloseFailed" xml:space="preserve">
+    <value>数据库关闭失败。</value>
+  </data>
+  <data name="ExMsg_DbNotInit" xml:space="preserve">
+    <value>数据库未初始化，请先调用SwitchDb方法。</value>
+  </data>
 </root>

@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>0.7.7.4</Version>
+    <Version>0.8.0-beta</Version>
     <ApplicationIcon>Icon_BedivereKnx.ico</ApplicationIcon>
     <Title>$(AssemblyName)</Title>
     <Authors>BHC666</Authors>
@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Knx.Falcon.Sdk" Version="6.3.7959" />
+    <PackageReference Include="Knx.Falcon.Sdk" Version="6.4.8671" />
   </ItemGroup>
 
   <ItemGroup>

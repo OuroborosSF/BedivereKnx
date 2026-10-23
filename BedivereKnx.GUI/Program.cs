@@ -66,6 +66,8 @@ namespace BedivereKnx.GUI
 
             //==============================测试内容================================
 
+            LiteDbTest();
+
             //Assembly assembly = Assembly.GetExecutingAssembly();
             //string[] strings = assembly.GetManifestResourceNames();
             //foreach (string s in strings)
@@ -170,6 +172,12 @@ namespace BedivereKnx.GUI
             Environment.Exit(-1);
 
         }
+
+        private static void LiteDbTest()
+        {
+
+        }
+
     }
 
 

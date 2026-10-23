@@ -148,9 +148,9 @@ namespace BedivereKnx.DataFile
         /// <returns></returns>
         private static DptBase GetDpt(string text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return DptFactory.Default.Get(DatapointTypeNumber.None);
+            if (string.IsNullOrWhiteSpace(text)) return null;// DptFactory.Default.Get(DatapointTypeNumber.None);
             string[] dptText = text.Split('-');
-            if (dptText.Length < 2) return DptFactory.Default.Get(DatapointTypeNumber.None);
+            if (dptText.Length < 2) return null; //DptFactory.Default.Get(DatapointTypeNumber.None);
             int mainNum = Convert.ToInt32(dptText[1]);
             int subNum = (dptText[0] == "DPST") ? Convert.ToInt32(dptText[2]) : -1;
             return DptFactory.Default.Get(mainNum, subNum);

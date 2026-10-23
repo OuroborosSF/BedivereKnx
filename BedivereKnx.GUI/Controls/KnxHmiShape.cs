@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using Knx.Falcon;
+﻿using Knx.Falcon;
 using Ouroboros.Hmi.Library.Elements;
+using System.ComponentModel;
 
 namespace BedivereKnx.GUI.Controls
 {
@@ -18,88 +18,91 @@ namespace BedivereKnx.GUI.Controls
         /// <summary>
         /// 控件原始尺寸
         /// </summary>
+        [DefaultValue(typeof(Size), "0, 0")]
         [Browsable(false)]
         internal Size RawSize
         {
-            get => rawSize;
+            get;
             set
             {
-                rawSize = value;
+                field = value;
                 Invalidate();
             }
         }
-        private Size rawSize;
 
         /// <summary>
         /// 形状
         /// </summary>
+        [DefaultValue(HmiShapeType.Ellipse)]
         [Category("Appearance")]
         internal HmiShapeType Shape
         {
-            get => shape;
+            get;
             set
             {
-                shape = value;
+                field = value;
                 Invalidate();
             }
         }
-        private HmiShapeType shape = HmiShapeType.Ellipse;
 
+        /// <summary>
+        /// 不透明度
+        /// </summary>
+        [DefaultValue(255)]
         internal byte Opacity
         {
-            get => opacity;
+            get;
             set
             {
-                opacity = Math.Max((byte)0, value);
+                field = Math.Max((byte)0, value);
                 Invalidate();
             }
         }
-        private byte opacity = 255;
 
         /// <summary>
         /// 填充颜色
         /// </summary>
         [Category("Appearance")]
+        [DefaultValue(typeof(Color), "White")]
         internal Color FillColor
         {
-            get => fillColor;
+            get;
             set
             {
-                fillColor = value;
+                field = value;
                 Invalidate();
             }
         }
-        private Color fillColor;
 
         /// <summary>
-        /// 填充颜色
+        /// 线条颜色
         /// </summary>
         [Category("Appearance")]
+        [DefaultValue(typeof(Color), "Black")]
         internal Color StrokeColor
         {
-            get => strokeColor;
+            get;
             set
             {
-                strokeColor = value;
+                field = value;
                 Invalidate();
             }
         }
-        private Color strokeColor;
 
         /// <summary>
         /// 线条宽度
         /// </summary>
         [Category("Appearance")]
+        [DefaultValue(0)]
         internal int StrokeWidth
         {
-            get => strokeWidth;
+            get;
             set
             {
-                strokeWidth = Math.Max(0, value);
+                field = Math.Max(0, value);
                 Invalidate();
             }
         }
-        private int strokeWidth = 0;
 
         internal KnxHmiShape(KnxHmiComponent comp)
         {
@@ -114,8 +117,8 @@ namespace BedivereKnx.GUI.Controls
             RawSize = comp.RawSize;
             Shape = comp.Shape;
             FillColor = comp.FillColor;
-            strokeColor = comp.StrokeColor;
-            strokeWidth = comp.StrokeWidth;
+            StrokeColor = comp.StrokeColor;
+            StrokeWidth = comp.StrokeWidth;
             Text = comp.Text;
             Visible = true;
             mapping = comp.Mapping;

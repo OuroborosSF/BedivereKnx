@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using BedivereKnx.Models;
 using Knx.Falcon;
-using BedivereKnx.Models;
+using System.ComponentModel;
 
 namespace BedivereKnx.GUI.Controls
 {
@@ -15,47 +15,47 @@ namespace BedivereKnx.GUI.Controls
         /// <summary>
         /// 反馈框宽度
         /// </summary>
+        [DefaultValue(15)]
         internal int FeedbackWidth
         {
-            get => feedbackWidth;
+            get;
             set
             {
-                feedbackWidth = Math.Max(0, value);
+                field = Math.Max(0, value);
                 Invalidate();
             }
         }
-        private int feedbackWidth = 15;
 
         /// <summary>
         /// 反馈颜色
         /// </summary>
         [Category("Appearance")]
+        [DefaultValue(typeof(Color), "Purple")]
         internal Color FeedbackColor
         {
-            get => feedbackColor;
+            get;
             set
             {
-                feedbackColor = value;
+                field = value;
                 Invalidate();
             }
         }
-        private Color feedbackColor = Color.Purple;
 
         /// <summary>
         /// KNX对象
         /// </summary>
+        [DefaultValue(null)]
         internal KnxObject? KnxObject
         {
-            get => knxObject;
+            get;
             set
             {
                 if (value is null) return;
-                knxObject = value;
+                field = value;
                 KnxObject![KnxObjectPart.SwitchFeedback].GroupValueChanged += KnxHmiDigitalGroup_GroupValueChanged;
                 Invalidate(); //重绘控件
             }
         }
-        private KnxObject? knxObject;
 
         internal KnxHmiDigitalGroup(KnxHmiComponent comp)
         {
@@ -90,7 +90,7 @@ namespace BedivereKnx.GUI.Controls
             {
                 Graphics g = pe.Graphics; //创建一个Graphics对象
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //反锯齿
-                SolidBrush brush = new(feedbackColor); //绘制形状实体作为反馈
+                SolidBrush brush = new(FeedbackColor); //绘制形状实体作为反馈
                 Rectangle frame = new(0, 0, FeedbackWidth, Height); //边框
                 g.FillRectangle(brush, frame); //绘制矩形
                 brush.Dispose();
@@ -116,7 +116,7 @@ namespace BedivereKnx.GUI.Controls
         private void KnxHmiDigitalGroup_GroupValueChanged(GroupValue? value)
         {
             if (value is null) return;
-            feedbackColor = mappingColors[value];
+            FeedbackColor = mappingColors[value];
         }
 
     }
